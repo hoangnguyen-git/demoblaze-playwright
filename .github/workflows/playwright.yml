@@ -35,6 +35,9 @@ jobs:
                   path: playwright-report/
                   retention-days: 7
 
+            - name: Generate Allure Report
+              run: npm run allure-report
+
             - name: Upload Allure Report
               uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
