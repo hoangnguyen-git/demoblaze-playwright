@@ -1,0 +1,44 @@
+{
+  "name": "playwright-screening",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Hoang Nguyen",
+  "license": "ISC",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoangnguyen-git/demoblaze-playwright.git"
+  },
+  "scripts": {
+    "lint": "eslint --fix pages utilities tests configs",
+    "prettier": "npx prettier --write '**/*.{js,ts,jsx,tsx,json}'",
+    "copy-allure": "cp -r allure-setup/* allure-results/",
+    "allure-report": "allure generate allure-results -o allure-report --clean",
+    "allure-open": "allure generate allure-results -o allure-report --clean && allure open allure-report",
+    "ci-qa": "cross-env CI=true ENV=qa npx playwright test --project=chromium|| exit 0",
+    "test": "cross-env ENV=qa npx playwright test --project=chromium",
+    "fail": "cross-env ENV=qa npx playwright test --project=chromium --last-failed",
+    "test-firefox": "cross-env ENV=qa npx playwright test --project=firefox",
+    "test-webkit": "cross-env ENV=qa npx playwright test --project=webkit",
+    "test-edge": "cross-env ENV=qa npx playwright test --project=edge",
+    "test-all-browsers": "cross-env ENV=qa npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/k6": "^1.5.0",
+    "@types/node": "^25.0.3",
+    "allure": "^0.0.0",
+    "allure-commandline": "^2.34.0",
+    "allure-playwright": "^3.3.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "esbuild": "^0.27.2",
+    "rimraf": "^6.0.1"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "eslint": "^9.39.2",
+    "k6": "^0.0.0"
+  }
+}

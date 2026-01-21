@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2022", // or any other version you prefer
+        "module": "commonjs",
+        "types": ["k6"],
+        "lib": [
+            "es2022",
+            "dom",
+            "es6",
+        ], // Ensure 'dom' is included
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noUnusedLocals": true,
+    }
+}
