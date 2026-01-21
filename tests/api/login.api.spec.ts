@@ -1,4 +1,4 @@
-import { Utility } from './../../utilities/utils';
+import { Utility } from '../../utilities/utils';
 import { ApiPath } from '../../api/api-path';
 import { expect, test } from '../../pages/base-page';
 import { Constants } from '../../utilities/constants';

@@ -185,10 +185,10 @@ The demo scripts are the test files located in the `tests/` directory. These inc
     npm run test tests/ui/
     ```
 
-6. **Run Performance Tests:**
+6. **Run Performance Tests:** (Recommendations for using k6 in performance testing.)
 
     ```bash
-    npm run test tests/perfomance/ (using with K6 installation)
+    npm run test tests/performance/
     ```
 
 7. **Generate and View Reports:**

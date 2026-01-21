@@ -19,7 +19,7 @@ export class HomePage extends CommonPage {
   async clickCategory(category: string): Promise<void> {
     await this.locators.lnkCategory(category).click();
     await this.page.waitForLoadState();
-    await this.waitForSeconds(1);
+    await this.waitForSeconds(2);
   }
 
   /**
