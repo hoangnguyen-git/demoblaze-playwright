@@ -1,3 +1,3 @@
 export const ApiPath = {
-    login: '/login',
+  login: '/login',
 };
