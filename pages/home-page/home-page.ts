@@ -30,6 +30,7 @@ export class HomePage extends CommonPage {
      */
     @step('Get all product names')
     async getAllProductNames(): Promise<string[]> {
+        await this.waitForSeconds(1)
         await this.locators.allProductNames.last().waitFor();
         return this.locators.allProductNames.allTextContents();
     }

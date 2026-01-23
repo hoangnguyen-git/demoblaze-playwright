@@ -41,6 +41,7 @@ export class LoginPage extends CommonPage {
     async login(username: string, password: string): Promise<void> {
         await this.locators.userNameInput.fill(username);
         await this.locators.passwordInput.fill(password);
+        await this.waitForSeconds(0.5);
         await this.locators.loginButton.click({ force: true });
         await this.page.waitForLoadState('domcontentloaded');
     }
