@@ -1,4 +1,4 @@
-import { expect, test } from "../../pages/base-page";
+import { expect, test } from '../../pages/base-page';
 
 test.describe('Login performance', {
     tag: ['@performance'],

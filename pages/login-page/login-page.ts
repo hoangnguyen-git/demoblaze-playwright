@@ -42,7 +42,6 @@ export class LoginPage extends CommonPage {
         await this.locators.userNameInput.fill(username);
         await this.locators.passwordInput.fill(password);
         await this.locators.loginButton.click({ force: true });
-        await expect(this.locators.loginButton).toBeVisible();
         await this.page.waitForLoadState('domcontentloaded');
     }
 

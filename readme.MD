@@ -24,32 +24,35 @@ This automated testing framework is built using **Playwright**, a modern end-to-
 ### Key Components:
 
 - **`pages/`**: Contains page object classes that encapsulate the elements and actions for each page of the application. This includes:
-    - Each page will include 3 separate files in a folder, example for login-page
-    `login-page/`: Folder for login page contains 3 files below:
-        - `login-constants.ts`: Constants specific to the login page.
-        - `login-locators.ts`: Element locators (selectors) for the login page.
-        - `login-page.ts`: Page object class with login actions and methods.
-    - `common-page/`: Shared components and utilities for common.
-    - `home-page/`: Home page specific elements and methods.
-    - `base-page.ts`: Base class with fixture.
+  - Each page will include 3 separate files in a folder, example for login-page
+    `login-page/`: Folder for login page contains 3 files below: - `login-constants.ts`: Constants specific to the login page. - `login-locators.ts`: Element locators (selectors) for the login page. - `login-page.ts`: Page object class with login actions and methods.
+  - `common-page/`: Shared components and utilities for common.
+  - `home-page/`: Home page specific elements and methods.
+  - `cart-page/`: Cart page specific elements and methods.
+  - `base-page.ts`: Base class with fixture.
+
+- **`data/`**: Contains test data:
+
+- **`modal/`**: Define interface using in the framework:
 
 - **`tests/`**: Test specifications organized by type:
-    - `api/`: API-focused tests.
-    - `perfomance/`: Performance tests. (Using K6)
-    - `ui/`: User interface tests.
+  - `api/`: API-focused tests.
+  - `perfomance/`: Performance tests. (Using K6)
+  - `ui/`: User interface tests.
 
 - **`utilities/`**: Helper functions and utilities:
-    - `constants.ts`: Application constants.
-    - `logging.ts`: Logging utilities.
-    - `utils.ts`: General utility functions.
+  - `constants.ts`: Application constants.
+  - `logging.ts`: Logging utilities.
+  - `utils.ts`: General utility functions.
 
 - **`configs/`**: Configuration files for setup and teardown:
-    - `global.setup.ts`: Global test setup.
-    - `global.teardown.ts`: Global test cleanup.
+  - `global.setup.ts`: Global test setup.
+  - `global.teardown.ts`: Global test cleanup.
 
 - **`api/`**: API-related helpers and paths:
-    - `api-helper.ts`: API utility functions.
-    - `api-path.ts`: API endpoint definitions.
+  - `api-action.ts`: API endpoints call.
+  - `api-helper.ts`: API utility functions.
+  - `api-path.ts`: API endpoint definitions.
 
 - **`profiles/`**: Environment-specific configuration profiles.
 
@@ -63,8 +66,15 @@ This automated testing framework is built using **Playwright**, a modern end-to-
 
 ```
 .
-├── eslint.config.mjs
+├── .eslintrc.json
+├── .github/
+│   └── workflows/
+├── .gitignore
+├── .prettierignore
+├── .prettierrc
 ├── JavaScriptStandardStyle.md
+├── eslint.config.mjs
+├── package-lock.json
 ├── package.json
 ├── playwright.config.ts
 ├── readme.MD
@@ -75,6 +85,10 @@ This automated testing framework is built using **Playwright**, a modern end-to-
 ├── configs/
 │   ├── global.setup.ts
 │   └── global.teardown.ts
+├── data/
+│   └── order-data.ts
+├── modal/
+│   └── order.ts
 ├── pages/
 │   ├── base-page.ts
 │   ├── common-page/
@@ -93,7 +107,7 @@ This automated testing framework is built using **Playwright**, a modern end-to-
 ├── tests/
 │   ├── api/
 │   │   └── login.spec.ts
-│   ├── perfomance/
+│   ├── performance/
 │   │   └── login.test.ts
 │   └── ui/
 │       ├── login.spec.ts
@@ -124,25 +138,25 @@ This automated testing framework is built using **Playwright**, a modern end-to-
 
 2. **Clone the Repository:**
 
-    ```bash
-    git clone https://github.com/hoangnguyen-git/demoblaze-playwright.git
-    cd demoblaze-playwright
-    ```
+   ```bash
+   git clone https://github.com/hoangnguyen-git/demoblaze-playwright.git
+   cd demoblaze-playwright
+   ```
 
 3. **Install Dependencies:**
 
-    ```bash
-    cd demoblaze-playwright
-    npm install
-    npx playwright install
-    ```
+   ```bash
+   cd demoblaze-playwright
+   npm install
+   npx playwright install
+   ```
 
 4. Using npx (so you don't have to install a global package):
 
-    ```bash
-    npx npm-check-updates -u
-    npm install
-    ```
+   ```bash
+   npx npm-check-updates -u
+   npm install
+   ```
 
 ## Steps to Execute the Demo Scripts
 
@@ -157,45 +171,45 @@ The demo scripts are the test files located in the `tests/` directory. These inc
 
 1. **Run All Tests:**
 
-    ```bash
-    npm run test
-    ```
+   ```bash
+   npm run test
+   ```
 
 2. **Run Specific Test File:**
 
-    ```bash
-    npm run test tests/ui/login.spec.ts
-    ```
+   ```bash
+   npm run test tests/ui/login.spec.ts
+   ```
 
 3. **Run Tests by Tag:**
 
-    ```bash
-    npm run test -- --grep "@smoke"
-    ```
+   ```bash
+   npm run test -- --grep "@smoke"
+   ```
 
 4. **Run API Tests:**
 
-    ```bash
-    npm run test tests/api/
-    ```
+   ```bash
+   npm run test tests/api/
+   ```
 
 5. **Run UI Tests:**
 
-    ```bash
-    npm run test tests/ui/
-    ```
+   ```bash
+   npm run test tests/ui/
+   ```
 
 6. **Run Performance Tests:** (Recommendations for using k6 in performance testing.)
 
-    ```bash
-    npm run test tests/performance/
-    ```
+   ```bash
+   npm run test tests/performance/
+   ```
 
 7. **Generate and View Reports:**
-    ```bash
-    npm run allure-report  # Generates Allure report and starts server
-    npx playwright show-report  # Opens Playwright HTML report
-    ```
+   ```bash
+   npm run allure-report  # Generates Allure report and starts server
+   npx playwright show-report  # Opens Playwright HTML report
+   ```
 
 ### Debugging:
 
@@ -212,12 +226,12 @@ The demo scripts are the test files located in the `tests/` directory. These inc
 - it locates on `profiles` folder
 - Here is the sample profile for `QA` env, all the key in `.env.example` must have value to make sure no error during running test
   `profiles/.env.qa`
-    ```bash
-        BASE_URL
-        API_BASE_URL
-        USERNAME
-        PASSWORD
-    ```
+  ```bash
+      BASE_URL
+      API_BASE_URL
+      USERNAME
+      PASSWORD
+  ```
 
 ## Guideline How to use Playwright
 
@@ -247,3 +261,12 @@ The demo scripts are the test files located in the `tests/` directory. These inc
 2. `npm run allure-report` it will generate allure report and start report server
 3. `npm run lint` ESLint statically analyzes your code to quickly find problems.
 4. `npx playwright show-report` Open Playwright html report
+
+## Report
+
+### Playwright report
+![alt text](<images/playwright-report.png>)
+
+### Allure report
+![alt text](<images/allure1-report.png>)
+![alt text](<images/allure1-report.png>)

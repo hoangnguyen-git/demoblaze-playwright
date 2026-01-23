@@ -7,13 +7,13 @@ import { test } from '@playwright/test';
  * @returns {(target: (this: any, ...args: any[]) => any, context: ClassMethodDecoratorContext) => (this: any, ...args: any[]) => any}
  */
 export function step(
-  stepName?: string,
+    stepName?: string,
 ): (target: (this: any, ...args: any[]) => any, context: ClassMethodDecoratorContext) => (this: any, ...args: any[]) => any {
-  return function decorator(target: (this: any, ...args: any[]) => any, context: ClassMethodDecoratorContext) {
-    return function replacementMethod(this: any, ...args: any[]) {
-      const name: string = stepName ?? `${this.constructor.name}.${String(context.name)}`;
-      console.log(`[STEP] ${name}`);
-      return test.step(name, () => target.apply(this, args));
+    return function decorator(target: (this: any, ...args: any[]) => any, context: ClassMethodDecoratorContext) {
+        return function replacementMethod(this: any, ...args: any[]) {
+            const name: string = stepName ?? `${this.constructor.name}.${String(context.name)}`;
+            console.log(`[STEP] ${name}`);
+            return test.step(name, () => target.apply(this, args));
+        };
     };
-  };
 }

@@ -7,9 +7,9 @@ import { CartConstants } from '../../pages/cart-page/cart-constants';
 test.describe('Cart feature', {
     tag: ['@cart', '@regression'],
 }, () => {
-    test.describe.configure({ mode: 'parallel' });
+    test.describe.configure({ mode: 'serial' });
 
-    test.beforeEach('Login', async ({ page, loginPage }) => {
+    test.beforeEach('Login', async ({ loginPage }) => {
         await loginPage.navigateAndLogin();
     });
 
@@ -19,7 +19,7 @@ test.describe('Cart feature', {
 
     test('Add single product to cart and validate', {
         tag: ['@smoke'],
-    }, async ({ homePage, cartPage, apiAction }) => {
+    }, async ({ homePage, cartPage }) => {
         const productNames = await homePage.getAllProductNames();
         await test.step('Verify phone products are displayed', async () => {
             expect(productNames.length).toBeGreaterThan(0);
@@ -66,7 +66,7 @@ test.describe('Cart feature', {
 
     test('Delete product from cart', {
         tag: ['@smoke'],
-    }, async ({ homePage, cartPage, apiAction }) => {
+    }, async ({ homePage, cartPage }) => {
         const productNames = await homePage.getAllProductNames();
         await test.step('Verify phone products are displayed', async () => {
             expect(productNames.length).toBeGreaterThan(0);
@@ -90,7 +90,7 @@ test.describe('Cart feature', {
 
     test('Place order successfully', {
         tag: ['@smoke'],
-    }, async ({ homePage, cartPage, apiAction }) => {
+    }, async ({ homePage, cartPage }) => {
         const productNames = await homePage.getAllProductNames();
         await test.step('Verify phone products are displayed', async () => {
             expect(productNames.length).toBeGreaterThan(0);
@@ -121,7 +121,7 @@ test.describe('Cart feature', {
         });
     });
 
-    test('Edge Case: Place order with empty form', async ({ homePage, cartPage, apiAction }) => {
+    test('Edge Case: Place order with empty form', async ({ homePage, cartPage }) => {
         const productNames = await homePage.getAllProductNames();
         await test.step('Verify phone products are displayed', async () => {
             expect(productNames.length).toBeGreaterThan(0);
