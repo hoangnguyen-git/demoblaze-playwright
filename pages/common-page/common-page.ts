@@ -14,8 +14,8 @@ export class CommonPage {
    * Open menu by clicking on the menu button
    * @param menu
    */
-  async openMenu(menu: string): Promise<void> {
-    const menuLocator = this.page.getByRole('link', { name: menu });
+  async openMenu(menu: string, isExact: boolean = true): Promise<void> {
+    const menuLocator = this.page.getByRole('link', { name: menu, exact: isExact });
     await menuLocator.click();
     await this.page.waitForLoadState();
   }

@@ -8,9 +8,7 @@ test.describe(
     tag: ['@login', '@regression'],
   },
   () => {
-    test(
-      'API - login with valid credentials',
-      {
+    test('API - login with valid credentials', {
         tag: ['@smoke'],
       },
       async ({ apiHelper }) => {
